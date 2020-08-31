@@ -1,0 +1,10 @@
+@startuml
+
+Agent Alice #Red
+Agent Bob   #Green
+
+Alice -> Bob
+
+Bob -> Alice
+
+@enduml
