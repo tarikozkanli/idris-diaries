@@ -22,4 +22,23 @@ listToTree (x :: xs) = insert x (listToTree xs)
 
 treeToList : Tree a -> List a
 treeToList Empty = []
-treeToList (Node left val right) = ?treeToList_rhs_2
+treeToList (Node left val right) =
+                      (treeToList left) ++
+                      [val] ++
+                      (treeToList right)
+data Expr = Val Int
+           | Add Expr Expr
+           | Mult Expr Expr
+           | Subtr Expr Expr
+
+evaluate : Expr -> Int
+evaluate (Val x)     = x
+evaluate (Add x y)   = (evaluate x) + (evaluate y)
+evaluate (Mult x y)  = (evaluate x) * (evaluate y)
+evaluate (Subtr x y) = (evaluate x) - (evaluate y)
+
+maxMaybe : Ord a => Maybe a -> Maybe a -> Maybe a
+maxMaybe Nothing Nothing = Nothing
+maxMaybe Nothing _ = Just x
+maxMaybe (Just x) Nothing = Just x
+maxMaybe (Just x) (Just y) = Just (max x y)

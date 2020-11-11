@@ -1,14 +1,10 @@
-import Data.Vect
 
-fourInts : Vect 4 Int
-fourInts = [0, 1, 2, 3]
+data Vect : Nat -> Type -> Type where
+            Nil : Vect Z a
+            (::) : (x : a) -> (xs : Vect k a) -> Vect (S k) a
 
-sixInts : Vect 6 Int
-sixInts = [4, 5, 6, 7, 8, 9]
+%name Vect xs, ys, zs
 
-tenInts : Vect 10 Int
-tenInts = fourInts ++ sixInts
-WordLength_vec.idr
-
-multMatrix : Num numType =>
-Vect n (Vect m numType) -> Vect m (Vect p numType) -> Vect n (Vect p numType)
+append : Vect n elem -> Vect m elem -> Vect (n + m) elem
+append [] ys = ys
+append (x :: xs) ys = x :: append xs ys

@@ -39,9 +39,19 @@ pictureArea (Rotate x y) = pictureArea y
 pictureArea (Translate x y z) = pictureArea z
 
 
-data Biggest = NoTriangle | Size Double
-biggestTriangle : Picture -> Biggest
+testPic1 : Picture
+testPic1 = Combine (Primitive (Triangle 2 3))
+                  (Primitive (Triangle 2 4))
+testPic2 : Picture
+testPic2 = Combine (Primitive (Rectangle 1 3))
+                   (Primitive (Circle 4))
 
+biggestTriangle : Picture -> Maybe Double
+biggestTriangle (Primitive (Triangle x y)) = Just (area (Triangle x y))
+biggestTriangle (Primitive _) = Nothing
+biggestTriangle (Rotate x y) = biggestTriangle y
+biggestTriangle (Translate x y z) = biggestTriangle z
+biggestTriangle (Combine x y) = max (biggestTriangle x) (biggestTriangle y)
 
 data DivResult = DivByZero | Result Double
 
