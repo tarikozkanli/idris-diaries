@@ -45,13 +45,17 @@ even Z = True
 even (S x) = not (even x)
 
 data Even : Nat -> Type where
-  MkEven : (k : Nat) -> Even k
+  MkEven : (k : Nat) -> (even k = True) -> Even k
 
 data Odd : Nat -> Type where
-  MkOdd : (k : Nat) -> Odd k
+  MkOdd : (k : Nat) -> (even k = False) -> Odd k
 
 
 even_or_odd : (x : Nat) -> Either (Even x) (Odd x)
-even_or_odd k = if (even k) then Right (MkOdd k)
-                            else Left (MkEven k) 
+even_or_odd 0 = ?even_or_odd_rhs_0
+even_or_odd (S k) = ?even_or_odd_rhs_1
+
+
+
+
 
