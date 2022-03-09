@@ -46,7 +46,7 @@ even (S x) = not (even x)
 
 
 data Even : Nat -> Type where
-  Mkeven : (k : Nat) -> Even k
+  MkEven : (k : Nat) -> Even k
 
 data Odd : Nat -> Type where
   MkOdd : (k : Nat) -> Odd k
@@ -54,6 +54,6 @@ data Odd : Nat -> Type where
 -- it returns whether the given nat is even or odd and 
 -- the corresponding proof.
 even_or_odd : (k : Nat) -> Either (Even k) (Odd k)
-even_or_odd k = if (even k) then Left (Mkeven k)
+even_or_odd k = if (even k) then Left (MkEven k)
                             else Right (MkOdd k) 
 
