@@ -44,14 +44,16 @@ even : Nat -> Bool
 even Z = True
 even (S x) = not (even x)
 
+
 data Even : Nat -> Type where
-  MkEven : (k : Nat) -> Even k
+  Mkeven : (k : Nat) -> Even k
 
 data Odd : Nat -> Type where
   MkOdd : (k : Nat) -> Odd k
 
-
-even_or_odd : (x : Nat) -> Either (Even x) (Odd x)
-even_or_odd k = if (even k) then Right (MkOdd k)
-                            else Left (MkEven k) 
+-- it returns whether the given nat is even or odd and 
+-- the corresponding proof.
+even_or_odd : (k : Nat) -> Either (Even k) (Odd k)
+even_or_odd k = if (even k) then Left (Mkeven k)
+                            else Right (MkOdd k) 
 
